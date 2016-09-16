@@ -1,0 +1,16 @@
+@(competitor: Form[CreateCompetitorForm])(implicit message: Messages)
+
+@import helper._
+
+@main("Welcome to Play") {
+        <script src='@routes.Assets.versioned("js/index.js")' type="text/javascript"></script>
+        <ul id="competitors"></ul>
+
+    @form(routes.CompetitorController.addCompetitor()) {
+                @inputText(competitor("name"))
+
+                <div class="buttons">
+                        <input type="submit" value="Add Competitor"/>
+                </div>
+    }
+}

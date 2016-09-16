@@ -1,0 +1,7 @@
+<script src='@routes.Assets.versioned("js/index.js")' type="text/javascript"></script>
+<ul id="competitors"></ul>
+
+<form action="@routes.Competitor.addCompetitor()" method="post">
+    <input name="name" type="text">
+    <button>Add Competitor</button>
+</form>
