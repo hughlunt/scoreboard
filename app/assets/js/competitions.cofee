@@ -1,0 +1,5 @@
+$ ->
+  $.get "/competitions", (competitions) ->
+    $.each competitions, (index, competition) ->
+      name = $("<div>").addClass("name").text competition.name
+      $("#competitions").append $("<li>").append(name)

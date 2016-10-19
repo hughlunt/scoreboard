@@ -2,4 +2,4 @@
 
 createdb scoreboard
 createuser scoreboard_app
-psql scoreboard -f ./db/initial_setup.sql
+#psql scoreboard -f ./db/initial_setup.sql

@@ -8,14 +8,12 @@ create table competitor (
 create table competition (
        id    SERIAL PRIMARY KEY,
        name  text not null,
-       date  timestamp not null
+       date  timestamptz not null
 );
 
 create table points (
        id       SERIAL PRIMARY KEY,
-       label    text not null,
-       position int not null,
-       points   int not null
+       points   JSON not null
 );
 
 create table event (
@@ -25,14 +23,19 @@ create table event (
        FOREIGN KEY (points_id) REFERENCES points(id)
 );
 
-create table result (
-       id    	      SERIAL PRIMARY KEY,
+create table participant (
+       id             SERIAL PRIMARY KEY,
        competition_id int references competition(id) NOT NULL,
        competitor_id  int references competitor(id) NOT NULL,
+       FOREIGN KEY (competition_id) REFERENCES competition(id),
+       FOREIGN KEY (competitor_id) REFERENCES competitor(id)
+);
+
+create table result (
+       id    	      SERIAL PRIMARY KEY,
+       participant_id int references participant(id) NOT NULL,
        event_id       int references event(id) NOT NULL,
        position	      int NOT NULL,
-       FOREIGN KEY (competition_id) REFERENCES competition(id),
-       FOREIGN KEY (competitor_id) REFERENCES competitor(id),
        FOREIGN KEY (event_id) REFERENCES event(id)
 );
 
@@ -40,5 +43,6 @@ create table result (
 DROP TABLE result;
 DROP TABLE points;
 DROP TABLE event;
+DROP TABLE participant;
 DROP TABLE competitor;
 DROP TABLE competition;
